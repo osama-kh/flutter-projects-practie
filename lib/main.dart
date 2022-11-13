@@ -7,9 +7,18 @@ import 'package:flutter/material.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
+  var indx = 0;
+  void answerQuestion() {
+    indx++;
+    print(indx);
+  }
+
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
+    var quistion = [
+      'what\'s your favorite color?',
+      'what\'s your favorite animal?',
+    ];
 
     //throw UnimplementedError();
     return MaterialApp(
@@ -19,10 +28,16 @@ class MyApp extends StatelessWidget {
         ),
         body: Column(
           children: [
-            Text("The question!"),
-            ElevatedButton(onPressed: null, child: Text('Answer 1')),
-            ElevatedButton(onPressed: null, child: Text('Answer 2')),
-            ElevatedButton(onPressed: null, child: Text('Answer 3'))
+            Text(quistion[indx]),
+            ElevatedButton(onPressed: answerQuestion, child: Text('Answer 1')),
+            ElevatedButton(
+                onPressed: () => print("answer 2 chosen"),
+                child: Text('Answer 2')),
+            ElevatedButton(
+                onPressed: () {
+                  print("answer 3");
+                },
+                child: Text('Answer 3'))
           ],
         ),
       ),
