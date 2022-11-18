@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 class Quiz extends StatelessWidget {
   final List<Map<String, Object>> quistion;
   final int indx;
-  final VoidCallback answerQuestion;
+  final Function answerQuestion;
   Quiz(
       {required this.quistion,
       required this.answerQuestion,
@@ -17,8 +17,10 @@ class Quiz extends StatelessWidget {
     return Column(
       children: [
         Question(quistion[indx]['questionText'] as String),
-        ...(quistion[indx]['answers'] as List<String>).map((answer) {
-          return Answer(answerQuestion, answer);
+        ...(quistion[indx]['answers'] as List<Map<String, Object>>)
+            .map((answer) {
+          return Answer(
+              () => answerQuestion(answer['score']), answer['text'] as String);
         }).toList()
       ],
     );

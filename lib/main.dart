@@ -20,21 +20,37 @@ class _MyAppState extends State<MyApp> {
   final _quistion = const [
     {
       'questionText': 'what\'s your favorite color?',
-      'answers': ['Black', 'Red', 'Green', 'White']
+      'answers': [
+        {'text': 'Black', 'score': 10},
+        {'text': 'Red', 'score': 5},
+        {'text': 'Green', 'score': 3},
+        {'text': 'White', 'score': 1}
+      ]
     },
     {
       'questionText': 'what\'s your favorite animal?',
-      'answers': ['Rabbit', 'Lion', 'Spider', 'Sheep']
+      'answers': [
+        {'text': 'Rabbit', 'score': 3},
+        {'text': 'Lion', 'score': 4},
+        {'text': 'Spider', 'score': 5},
+        {'text': 'Sheep', 'score': 7}
+      ]
     },
     {
       'questionText': 'what\'s your favorite instructor?',
-      'answers': ['Adam', 'David', 'Mohamed', 'Max']
+      'answers': [
+        {'text': 'Adam', 'score': 1},
+        {'text': 'David', 'score': 6},
+        {'text': 'Mohamed', 'score': 9},
+        {'text': 'Max', 'score': 7}
+      ]
     }
   ];
   var _indx = 0;
-  void _answerQuestion() {
+  var _totlscore = 0;
+  void _answerQuestion(int score) {
     //var flag = true;
-
+    _totlscore += score;
     setState(() {
       _indx++;
     });
@@ -56,10 +72,10 @@ class _MyAppState extends State<MyApp> {
         ),
         body: _indx < _quistion.length
             ? Quiz(
-                answerQuestion: _answerQuestion,
+                answerQuestion: (_answerQuestion),
                 indx: _indx,
                 quistion: _quistion)
-            : Result(),
+            : Result(_totlscore),
       ),
     );
   }
