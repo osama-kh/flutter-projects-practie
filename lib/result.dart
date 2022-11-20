@@ -1,13 +1,12 @@
-import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
 import 'package:flutter/material.dart';
 import 'quiz.dart';
-import '';
 
 class Result extends StatelessWidget {
   final int resultscore;
-  Result(this.resultscore);
+  final VoidCallback _resetQuiz;
+  Result(this.resultscore, this._resetQuiz);
   String get resultPhrase {
     var resultText = 'You did it!';
     if (resultscore <= 8) {
@@ -25,10 +24,15 @@ class Result extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text(
-        resultPhrase,
-        style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
-        textAlign: TextAlign.center,
+      child: Column(
+        children: <Widget>[
+          Text(
+            resultPhrase,
+            style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
+            textAlign: TextAlign.center,
+          ),
+          TextButton(onPressed: _resetQuiz, child: Text('Restart Quiz!')),
+        ],
       ),
     );
   }
